@@ -1,0 +1,214 @@
+<!doctype html>
+<html lang="en" ng-app="app" ng-controller="RootController as rootVm">
+<head>
+  <!-- <%= version %> -->
+  <base href="<%= path %>">
+  <meta charset="utf-8">
+
+  <title><%= siteName %></title>
+  <meta name="description" content="<%= description %>">
+  <meta name="twitter:card" content="summary" />
+  <meta property="og:title" content="<%= siteName %>">
+  <meta property="og:description" content="<%= description %>">
+  <meta property="og:image" content="<% if (url !== '/') { %><%= url %>images/icon-256x256.png<% } %>">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <link rel="icon" href="favicon.ico" type="image/x-icon"/>
+  <link rel="canonical" href="<% if (url !== '/') { %><%= url %><% } %>">
+
+  <!-- Schema.org -->
+  <script type="application/ld+json" id="schema"></script>
+
+  <!-- Safari web app -->
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <link rel="apple-touch-icon" href="images/icon-152x152.png">
+
+  <% if (pwa) { %>
+  <!-- Progressive Web App -->
+
+  <!-- Chrome, Firefox OS and Opera -->
+  <meta name="theme-color" content="#fff">
+  <!-- Windows Phone -->
+  <meta name="msapplication-navbutton-color" content="#fff">
+  <!-- iOS Safari -->
+  <meta name="apple-mobile-web-app-status-bar-style" content="#fff">
+
+  <link rel="manifest" href="manifest.json">
+  <script>
+      window.enablePwa = /^https/.test(window.location.href);
+
+      if (window.enablePwa && 'serviceWorker' in navigator) {
+          navigator.serviceWorker.register('sw.js').then(function (registration) {
+              registration.onupdatefound = function () {
+                  console.log('ServiceWorker update found, installing...');
+              };
+          });
+      }
+  </script>
+  <% } %>
+
+  <!-- build:js(.) scripts/bridge.js -->
+  <script src="app/scripts/bridge.js"></script>
+  <!-- endbuild -->
+
+  <!-- build:css(.) styles/vendor.css -->
+  <link rel="stylesheet" href="node_modules/add-to-homescreen/dist/style/addtohomescreen.css">
+  <!-- endbuild -->
+
+  <!-- build:css(.tmp) styles/main.css -->
+  <link rel="stylesheet" href="styles/main.css">
+  <!-- endbuild -->
+</head>
+<body class="jw-theme-{{ ::rootVm.config.theme }} jw-flag-loading-config jw-flag-no-focus">
+
+<noscript>
+  <div>To make use of this website please make sure JavaScript is enabled.</div>
+</noscript>
+
+<jw-header ng-if="rootVm.config.options.enableHeader"></jw-header>
+<ui-view></ui-view>
+<jw-footer ng-if="rootVm.config.options.enableFooter"></jw-footer>
+
+<div class="jw-cover jw-loading" ng-show="rootVm.appStore.loading">
+  <div class="jw-loading-icon">
+    <div class="jw-rotate-animation">
+      <i class="jwy-icon jwy-icon-buffer"></i>
+    </div>
+  </div>
+</div>
+
+<div class="jw-offline-message">
+  You appear to be offline. <a ng-click="rootVm.reconnect()">Retry</a>
+</div>
+
+<!-- build:js(.) scripts/vendor.1.js -->
+<script src="node_modules/angular/angular.js"></script>
+<!-- endbuild -->
+
+<!-- build:js(.) scripts/vendor.2.js -->
+<script src="node_modules/angular-aria/angular-aria.js"></script>
+<script src="node_modules/angular-animate/angular-animate.js"></script>
+<script src="node_modules/angular-sanitize/angular-sanitize.js"></script>
+<script src="node_modules/angular-touch/angular-touch.js"></script>
+<script src="node_modules/angular-ui-router/release/angular-ui-router.js"></script>
+<script src="node_modules/gsap/src/uncompressed/TweenLite.js"></script>
+<script src="node_modules/gsap/src/uncompressed/plugins/CSSPlugin.js"></script>
+<script src="node_modules/ua-parser-js/src/ua-parser.js"></script>
+<script src="node_modules/add-to-homescreen/dist/addtohomescreen.min.js"></script>
+<script src="node_modules/iscroll/build/iscroll.js"></script>
+<!-- endbuild -->
+
+<!-- build:js(.) scripts/application.js -->
+<script src="app/scripts/vtt.js"></script>
+<script src="app/scripts/polyfills.js"></script>
+
+<script src="app/scripts/jwShowcase.module.js"></script>
+<script src="app/scripts/core/core.module.js"></script>
+<script src="app/scripts/core/animations/expand.animation.js"></script>
+
+<script src="app/scripts/core/controllers/cardMenu.controller.js"></script>
+<script src="app/scripts/core/controllers/cookies.controller.js"></script>
+<script src="app/scripts/core/controllers/confirm.controller.js"></script>
+<script src="app/scripts/core/controllers/root.controller.js"></script>
+<script src="app/scripts/core/controllers/share.controller.js"></script>
+
+<script src="app/scripts/core/components/buttonBack.component.js"></script>
+<script src="app/scripts/core/components/buttonMenu.component.js"></script>
+<script src="app/scripts/core/components/footer.component.js"></script>
+<script src="app/scripts/core/components/header.component.js"></script>
+<script src="app/scripts/core/components/headerMenu.component.js"></script>
+<script src="app/scripts/core/components/rail.component.js"></script>
+<script src="app/scripts/core/components/search.component.js"></script>
+<script src="app/scripts/core/components/sidebar.component.js"></script>
+<script src="app/scripts/core/components/sidebarLayout.component.js"></script>
+<script src="app/scripts/core/components/toolbar.component.js"></script>
+
+<script src="app/scripts/core/directives/adSlot.directive.js"></script>
+<script src="app/scripts/core/directives/button.directive.js"></script>
+<script src="app/scripts/core/directives/card.directive.js"></script>
+<script src="app/scripts/core/directives/cardGrid.directive.js"></script>
+<script src="app/scripts/core/directives/cardMenu.directive.js"></script>
+<script src="app/scripts/core/directives/cardSlider.directive.js"></script>
+<script src="app/scripts/core/directives/click.directive.js"></script>
+<script src="app/scripts/core/directives/cardPoster.directive.js"></script>
+<script src="app/scripts/core/directives/collapsibleText.directive.js"></script>
+<script src="app/scripts/core/directives/feedTitle.directive.js"></script>
+<script src="app/scripts/core/directives/markdown.directive.js"></script>
+<script src="app/scripts/core/directives/scroll.directive.js"></script>
+<script src="app/scripts/core/directives/lazyLoad.directive.js"></script>
+<script src="app/scripts/core/directives/player.directive.js"></script>
+<script src="app/scripts/core/directives/screenSize.directive.js"></script>
+<script src="app/scripts/core/directives/toggle.directive.js"></script>
+<script src="app/scripts/core/directives/view.directive.js"></script>
+
+<script src="app/scripts/core/filters/videoDuration.filter.js"></script>
+
+<script src="app/scripts/core/services/api.service.js"></script>
+<script src="app/scripts/core/services/apiConsumer.service.js"></script>
+<script src="app/scripts/core/services/appStore.service.js"></script>
+<script src="app/scripts/core/services/bridge.service.js"></script>
+<script src="app/scripts/core/services/configResolver.service.js"></script>
+<script src="app/scripts/core/services/cookies.service.js"></script>
+<script src="app/scripts/core/services/dataStore.service.js"></script>
+<script src="app/scripts/core/services/dfp.service.js"></script>
+<script src="app/scripts/core/services/feedModel.service.js"></script>
+<script src="app/scripts/core/services/history.service.js"></script>
+<script src="app/scripts/core/services/userSettings.service.js"></script>
+<script src="app/scripts/core/services/utils.service.js"></script>
+<script src="app/scripts/core/services/serviceWorker.service.js"></script>
+<script src="app/scripts/core/services/player.service.js"></script>
+<script src="app/scripts/core/services/popup.service.js"></script>
+<script src="app/scripts/core/services/platform.service.js"></script>
+<script src="app/scripts/core/services/preload.service.js"></script>
+<script src="app/scripts/core/services/seo.service.js"></script>
+<script src="app/scripts/core/services/session.service.js"></script>
+<script src="app/scripts/core/services/sidebar.service.js"></script>
+<script src="app/scripts/core/services/thumbstrip.service.js"></script>
+<script src="app/scripts/core/services/watchlist.service.js"></script>
+<script src="app/scripts/core/services/watchProgress.service.js"></script>
+
+<script src="app/scripts/core/listeners/stateChangeStart.listener.js"></script>
+<script src="app/scripts/core/listeners/stateChangeError.listener.js"></script>
+<script src="app/scripts/core/listeners/stateChangeSuccess.listener.js"></script>
+
+<script src="app/scripts/error/error.module.js"></script>
+<script src="app/scripts/error/controllers/error.controller.js"></script>
+
+<script src="app/scripts/dashboard/dashboard.module.js"></script>
+<script src="app/scripts/dashboard/controllers/dashboard.controller.js"></script>
+<script src="app/scripts/dashboard/directives/contentRow.directive.js"></script>
+
+<script src="app/scripts/feed/feed.module.js"></script>
+<script src="app/scripts/feed/controllers/feed.controller.js"></script>
+
+<script src="app/scripts/search/search.module.js"></script>
+<script src="app/scripts/search/controllers/search.controller.js"></script>
+
+<script src="app/scripts/settings/settings.module.js"></script>
+<script src="app/scripts/settings/controllers/settings.controller.js"></script>
+
+<script src="app/scripts/tag/tag.module.js"></script>
+<script src="app/scripts/tag/controllers/tag.controller.js"></script>
+
+<script src="app/scripts/updateBrowser/updateBrowser.module.js"></script>
+<script src="app/scripts/updateBrowser/controllers/updateBrowser.controller.js"></script>
+
+<script src="app/scripts/video/video.module.js"></script>
+<script src="app/scripts/video/controllers/video.controller.js"></script>
+<script src="app/scripts/video/components/toolbarVideo.component.js"></script>
+<script src="app/scripts/video/components/videoDetails.component.js"></script>
+<script src="app/scripts/video/components/videoDetailsTitle.component.js"></script>
+<script src="app/scripts/video/components/videoDetailsDescription.component.js"></script>
+<script src="app/scripts/video/components/videoDetailsShare.component.js"></script>
+<!-- endbuild -->
+
+<script>
+  window.configLocation = './config.json';
+</script>
+
+<!-- build:js({.tmp,app}) scripts/scripts.js -->
+<script src="scripts/app.js"></script>
+<script src="scripts/templates.js"></script>
+<!-- endbuild -->
+</body>
+</html>
