@@ -1,12 +1,12 @@
 {
     "version": "2",
-    "player": "",
+    "player": "eDGUO8gn",
     "theme": "light",
-    "siteName": "JW Showcase",
-    "description": "JW Showcase is an open-source, dynamically generated video website built around JW Player and JW Platform services. It enables you to easily publish your JW Player-hosted video content with no coding and minimal configuration.",
+    "siteName": "HealthTalk TV",
+    "description": "HealthTalk TV.",
     "footerText": "Powered by JW Player",
     "searchPlaylist": "r3MhKJyA",
-    "recommendationsPlaylist": "wZuMVmMk",
+    "recommendationsPlaylist": "WDQ3JxFC",
     "options": {
         "showcaseContentOnly": true,
         "backgroundColor": "",
@@ -27,23 +27,23 @@
     },
     "content": [
         {
-            "playlistId": "WXu7kuaW",
+            "playlistId": "EYoQfjZb",
             "featured": true,
             "enableText": false
         },
         {
-            "playlistId": "lrYLc95e",
+            "playlistId": "qW5VSzC2",
             "aspectratio": "23",
             "cols": {"xs": 2, "sm": 3, "md": 4, "lg": 5, "xl": 6}
         },
         {
-            "playlistId": "Q352cyuc",
+            "playlistId": "QsRGfWhf",
             "type": "grid",
             "enableSeeAll": true,
             "rows": 1
         },
         {
-            "playlistId": "oR7ahO0J"
+            "playlistId": "fln4KyeS"
         }
     ],
     "assets": {
